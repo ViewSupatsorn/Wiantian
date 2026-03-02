@@ -1,0 +1,3964 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Prompt", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: radial-gradient(circle at top, #fff9ea 0%, #f9f2ff 40%, #f4f6ff 100%);
+  color: #3b2a1a;
+  line-height: 1.7;
+}
+
+.container {
+  width: min(1120px, 100% - 3rem);
+  margin: 0 auto;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+p {
+  margin: 0 0 0.75rem;
+}
+
+section {
+  padding: 3.5rem 0;
+}
+
+/* Navigation Bar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(255, 206, 163, 0.3);
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.navbar-logo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #5b2b13;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+}
+
+.navbar-logo:hover {
+  color: #8d5a30;
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0.5rem;
+}
+
+.navbar-menu li {
+  margin: 0;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  color: #5b4735;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-radius: 999px;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.nav-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 199, 143, 0.2), rgba(255, 187, 166, 0.2));
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+  opacity: 1;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #5b2b13;
+  transform: translateY(-1px);
+}
+
+.nav-link.active {
+  font-weight: 600;
+  background: linear-gradient(135deg, rgba(255, 199, 143, 0.25), rgba(255, 187, 166, 0.25));
+  box-shadow: 0 2px 8px rgba(255, 173, 73, 0.3);
+}
+
+/* Responsive Navigation */
+@media (max-width: 768px) {
+  .navbar-content {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+  }
+
+  .navbar-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+
+  .nav-link {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-logo {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  .navbar-menu {
+    width: 100%;
+  }
+
+  .nav-link {
+    flex: 1;
+    text-align: center;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  min-height: 75vh;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  color: #fff7ec;
+  text-align: left;
+  /* ใช้สีพื้นหลังอ่อน ๆ เผื่อกรณีที่โหลดรูปไม่สำเร็จ */
+  background-color: #f8e9d8;
+  /* ชี้ไปยังไฟล์ภาพที่ Cursor เก็บไว้ในโปรเจกต์ของคุณ */
+  background-image: url("img/bg.gif");  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ถ้าคุณมีไฟล์ `หน้าปก (2).gif` อยู่ในโฟลเดอร์เดียวกับ index.html
+   สามารถเปลี่ยนบรรทัด background-image ด้านบนเป็น:
+   background-image: url("หน้าปก (2).gif");
+*/
+
+.hero-overlay {
+  flex: 1;
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent 55%),
+    linear-gradient(to bottom right, rgba(77, 37, 15, 0), rgba(134, 64, 38, 0.92));
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  padding: 4.5rem 0 3.5rem;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #ffd27a, #ff9f6a);
+  color: #4b260f;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.hero-tag::before {
+  content: "✶";
+  font-size: 0.9rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  margin-top: 1.4rem;
+  text-shadow: 0 6px 22px rgba(0, 0, 0, 0.55);
+}
+
+.hero-subtitle {
+  max-width: 600px;
+  font-weight: 300;
+  margin-top: 1rem;
+  margin-bottom: 1.8rem;
+  text-shadow: 0 3px 16px rgba(0, 0, 0, 0.7);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  align-items: center;
+}
+
+/* ปุ่มหลักและรอง */
+.btn-primary,
+.btn-secondary {
+  border-radius: 999px;
+  padding: 0.9rem 1.8rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease, color 0.22s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #ffb26b, #ff7c5c);
+  color: #3b1408;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+}
+
+.btn-secondary {
+  background: rgba(255, 244, 231, 0.1);
+  color: #ffe9c9;
+  border: 1px solid rgba(255, 240, 212, 0.7);
+  text-decoration: none;
+  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.35);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.55);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  background: rgba(255, 249, 243, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+}
+
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible {
+  outline: 2px solid #ffe4a1;
+  outline-offset: 3px;
+}
+
+/* Glow effect แบบนุ่มนวลสำหรับปุ่ม "เริ่มเวียนเทียนออนไลน์" */
+.glow-button {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  box-shadow: 0 0 18px rgba(255, 205, 136, 0.0);
+  animation: glowPulse 3.4s ease-in-out infinite;
+}
+
+.glow-button::before {
+  content: "";
+  position: absolute;
+  inset: -75%;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.75), transparent 55%),
+    radial-gradient(circle at 80% 100%, rgba(255, 183, 135, 0.75), transparent 60%);
+  opacity: 0;
+  mix-blend-mode: screen;
+  transform: translate3d(-25%, 10%, 0) rotate(8deg);
+  animation: glowSweep 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.glow-button::after {
+  content: "";
+  position: absolute;
+  inset: -25%;
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.7), transparent 60%);
+  opacity: 0.28;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+.glow-button:hover::before {
+  animation-duration: 3.5s;
+}
+
+.glow-button:hover {
+  animation-play-state: running;
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 rgba(255, 205, 136, 0.0),
+      0 0 0 rgba(255, 166, 123, 0.0);
+  }
+  45% {
+    box-shadow:
+      0 0 18px rgba(255, 221, 166, 0.7),
+      0 0 34px rgba(255, 150, 98, 0.85);
+  }
+  70% {
+    box-shadow:
+      0 0 12px rgba(255, 221, 166, 0.5),
+      0 0 26px rgba(255, 150, 98, 0.65);
+  }
+}
+
+@keyframes glowSweep {
+  0% {
+    opacity: 0;
+    transform: translate3d(-45%, 20%, 0) rotate(8deg);
+  }
+  20% {
+    opacity: 0.75;
+  }
+  55% {
+    opacity: 0.6;
+    transform: translate3d(10%, -10%, 0) rotate(4deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(40%, -40%, 0) rotate(0deg);
+  }
+}
+
+/* ส่วนเนื้อหา */
+.section-days {
+  background: linear-gradient(180deg, rgba(255, 247, 232, 0.9), #fffdf7);
+}
+
+.section-candle {
+  background: radial-gradient(circle at top, #fff4d7 0%, #f9f6ff 35%, #f2f4ff 100%);
+  border-top: 1px solid rgba(255, 211, 151, 0.35);
+}
+
+.section h2 {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  text-align: center;
+  color: #4b2a10;
+}
+
+.section-intro {
+  max-width: 720px;
+  margin: 0.75rem auto 2.1rem;
+  text-align: center;
+  color: #5a4631;
+}
+
+/* การ์ดแต่ละวัน */
+.day-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.8rem;
+}
+
+@media (max-width: 768px) {
+  .day-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.day-card {
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.96), rgba(255, 240, 224, 0.96));
+  border-radius: 1.4rem;
+  padding: 1.5rem 1.6rem 1.4rem;
+  box-shadow:
+    0 18px 40px rgba(176, 121, 72, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 206, 163, 0.6);
+  position: relative;
+  overflow: hidden;
+  scroll-margin-top: 5rem;
+}
+
+.day-card::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle at top right, rgba(255, 209, 163, 0.32), transparent 60%);
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+/* Card Header */
+.day-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.day-card h3 {
+  font-size: 1.25rem;
+  color: #5b2b13;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.day-badge {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, rgba(255, 199, 143, 0.3), rgba(255, 187, 166, 0.3));
+  color: #5b2b13;
+  border: 1px solid rgba(255, 199, 143, 0.5);
+}
+
+/* Day Feature */
+.day-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.day-feature-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.day-tagline {
+  font-size: 0.95rem;
+  color: #8d5a30;
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Day Content */
+.day-content {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 1.2rem;
+}
+
+.day-description {
+  font-size: 0.95rem;
+  color: #5b4735;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.day-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.day-detail-item {
+  font-size: 0.9rem;
+  color: #64513b;
+  line-height: 1.6;
+}
+
+.day-detail-item strong {
+  color: #5b2b13;
+  font-weight: 600;
+}
+
+/* Read More Button */
+.btn-read-more {
+  width: 100%;
+  padding: 0.75rem 1.2rem;
+  background: linear-gradient(135deg, rgba(255, 199, 143, 0.2), rgba(255, 187, 166, 0.2));
+  border: 1px solid rgba(255, 199, 143, 0.5);
+  border-radius: 0.8rem;
+  color: #5b2b13;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.25s ease;
+  position: relative;
+  z-index: 1;
+  margin-top: 0.5rem;
+}
+
+.btn-read-more:hover {
+  background: linear-gradient(135deg, rgba(255, 199, 143, 0.35), rgba(255, 187, 166, 0.35));
+  border-color: rgba(255, 199, 143, 0.7);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 173, 73, 0.25);
+}
+
+.btn-read-more.active {
+  background: linear-gradient(135deg, rgba(255, 199, 143, 0.4), rgba(255, 187, 166, 0.4));
+}
+
+.btn-arrow {
+  transition: transform 0.25s ease;
+  font-size: 1.1rem;
+}
+
+.btn-read-more.active .btn-arrow {
+  transform: rotate(90deg);
+}
+
+/* Expanded Content */
+.day-expanded-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+  padding: 0 0;
+  margin-top: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.day-expanded-content.active {
+  max-height: 2000px;
+  opacity: 1;
+  padding: 1.2rem 0 0.5rem;
+  border-top: 1px solid rgba(255, 206, 163, 0.4);
+  margin-top: 1rem;
+}
+
+.day-expanded-content h4 {
+  font-size: 1.1rem;
+  color: #5b2b13;
+  margin: 0 0 0.75rem;
+  font-weight: 700;
+}
+
+.day-expanded-content p {
+  font-size: 0.95rem;
+  color: #5b4735;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+.day-expanded-content ul,
+.day-expanded-content ol {
+  margin: 0.75rem 0;
+  padding-left: 1.5rem;
+  color: #5b4735;
+}
+
+.day-expanded-content li {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+}
+
+.day-expanded-content li strong {
+  color: #5b2b13;
+  font-weight: 600;
+}
+
+.day-card ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  list-style: "✦ ";
+  position: relative;
+  z-index: 1;
+  color: #5b4735;
+}
+
+.day-card li + li {
+  margin-top: 0.35rem;
+}
+
+/* แต่งสีโทนต่าง ๆ ให้แต่ละการ์ด */
+.day-makha {
+  border-color: rgba(255, 199, 143, 0.9);
+}
+
+.day-visakha {
+  border-color: rgba(255, 187, 166, 0.9);
+}
+
+.day-asalha {
+  border-color: rgba(215, 190, 255, 0.9);
+}
+
+.day-khaopansa {
+  border-color: rgba(190, 223, 255, 0.9);
+}
+
+/* Activity Section - เวียนเทียน */
+.activity-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.activity-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+  animation: candleFlicker 3s ease-in-out infinite;
+}
+
+@keyframes candleFlicker {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: brightness(1);
+  }
+  25% {
+    transform: scale(1.05) rotate(-2deg);
+    filter: brightness(1.1);
+  }
+  50% {
+    transform: scale(1) rotate(0deg);
+    filter: brightness(1);
+  }
+  75% {
+    transform: scale(1.05) rotate(2deg);
+    filter: brightness(1.1);
+  }
+}
+
+.activity-header h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  color: #5b2b13;
+  margin-bottom: 0.75rem;
+}
+
+/* คำอธิบายความหมายของการเวียนเทียน */
+.candle-meaning {
+  margin-bottom: 3rem;
+}
+
+.meaning-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 247, 232, 0.98));
+  border-radius: 1.5rem;
+  padding: 2rem 2.2rem;
+  box-shadow:
+    0 20px 50px rgba(176, 121, 72, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 206, 163, 0.6);
+}
+
+.meaning-card h3 {
+  font-size: 1.4rem;
+  color: #5b2b13;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.meaning-card > p {
+  font-size: 1rem;
+  color: #5b4735;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.meaning-card > p strong {
+  color: #5b2b13;
+  font-weight: 700;
+}
+
+.meaning-details {
+  display: grid;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.meaning-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 206, 163, 0.4);
+}
+
+.meaning-number {
+  flex-shrink: 0;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffb463, #ff9f6a);
+  color: #3b1408;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(255, 173, 73, 0.4);
+}
+
+.meaning-item div {
+  flex: 1;
+  font-size: 0.95rem;
+  color: #5b4735;
+  line-height: 1.7;
+}
+
+.meaning-item strong {
+  color: #5b2b13;
+  font-weight: 600;
+}
+
+.meaning-note {
+  font-size: 0.95rem;
+  color: #64513b;
+  line-height: 1.8;
+  font-style: italic;
+  text-align: center;
+  padding: 1rem;
+  background: rgba(255, 240, 224, 0.5);
+  border-radius: 0.8rem;
+  border-left: 3px solid rgba(255, 173, 73, 0.6);
+}
+
+/* Online Activity Section */
+.online-activity {
+  margin-top: 3rem;
+}
+
+.online-activity h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: #5b2b13;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.online-intro {
+  text-align: center;
+  font-size: 1rem;
+  color: #5a4631;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  line-height: 1.7;
+}
+
+/* ขั้นตอนเวียนเทียนออนไลน์ */
+.candle-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem;
+  counter-reset: candle-step;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.candle-steps li {
+  position: relative;
+  padding: 1rem 1.2rem 1rem 3.4rem;
+  border-radius: 1.2rem;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 14px 32px rgba(164, 132, 91, 0.16);
+  border: 1px solid rgba(255, 210, 167, 0.75);
+}
+
+.candle-steps li::before {
+  counter-increment: candle-step;
+  content: counter(candle-step);
+  position: absolute;
+  left: 1.1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 0%, #fffdf4, #ffb463);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #4b2209;
+  box-shadow:
+    0 0 14px rgba(255, 173, 73, 0.9),
+    0 4px 10px rgba(170, 109, 52, 0.6);
+}
+
+.step-title {
+  display: block;
+  font-weight: 600;
+  color: #62351c;
+  margin-bottom: 0.15rem;
+}
+
+.step-detail {
+  font-size: 0.95rem;
+  color: #64513b;
+}
+
+/* ปุ่มเวียนเทียนออนไลน์ */
+.candle-action {
+  text-align: center;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 2px solid rgba(255, 206, 163, 0.4);
+}
+
+.btn-candle-online {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #3b1408;
+  background: linear-gradient(135deg, #ffb26b, #ff7c5c);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow:
+    0 12px 30px rgba(255, 150, 98, 0.5),
+    0 0 0 0 rgba(255, 205, 136, 0);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-candle-online::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-candle-online:hover::before {
+  opacity: 1;
+}
+
+.btn-candle-online:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 16px 40px rgba(255, 150, 98, 0.6),
+    0 0 0 4px rgba(255, 205, 136, 0.3);
+}
+
+.btn-candle-online:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-candle-icon {
+  font-size: 1.4rem;
+  animation: candleIconFlicker 2s ease-in-out infinite;
+}
+
+@keyframes candleIconFlicker {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+  }
+}
+
+.btn-candle-arrow {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.btn-candle-online:hover .btn-candle-arrow {
+  transform: translateX(4px);
+}
+
+.candle-action-note {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #64513b;
+  font-style: italic;
+}
+
+/* ไฮไลต์ตอนเลื่อนมาที่ส่วนเวียนเทียน */
+.section-candle.highlight {
+  animation: sectionGlow 2.6s ease-out 1;
+}
+
+@keyframes sectionGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(255, 191, 112, 0);
+  }
+  30% {
+    box-shadow: 0 0 30px rgba(255, 191, 112, 0.75);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(255, 191, 112, 0);
+  }
+}
+
+/* เอฟเฟกต์ไฮไลต์การ์ดเมื่อคลิกจากเมนู */
+@keyframes cardHighlight {
+  0% {
+    transform: scale(1);
+    box-shadow:
+      0 18px 40px rgba(176, 121, 72, 0.18),
+      0 0 0 1px rgba(255, 255, 255, 0.7);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow:
+      0 24px 50px rgba(255, 173, 73, 0.4),
+      0 0 0 2px rgba(255, 206, 163, 0.8);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 18px 40px rgba(176, 121, 72, 0.18),
+      0 0 0 1px rgba(255, 255, 255, 0.7);
+  }
+}
+
+@keyframes stepHighlight {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 14px 32px rgba(164, 132, 91, 0.16);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow:
+      0 18px 40px rgba(255, 173, 73, 0.4),
+      0 0 0 2px rgba(255, 206, 163, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 14px 32px rgba(164, 132, 91, 0.16);
+  }
+}
+
+/* Footer */
+.footer {
+  padding: 1.5rem 0 2rem;
+  background: #3b2617;
+  color: #f7e6d2;
+  font-size: 0.9rem;
+}
+
+.footer-content {
+  text-align: center;
+}
+
+/* การตอบสนองบนจอเล็ก */
+@media (max-width: 640px) {
+  .hero {
+    text-align: center;
+  }
+
+  .hero-content {
+    padding-top: 3.5rem;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .candle-steps li {
+    padding-left: 3rem;
+  }
+
+  .meaning-card {
+    padding: 1.5rem 1.2rem;
+  }
+
+  .meaning-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .btn-candle-online {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+/* ============================================
+   Modal เวียนเทียนออนไลน์
+   ============================================ */
+.candle-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.candle-modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, #fffdf7, #fff4d7);
+  border-radius: 1.5rem;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  position: relative;
+  padding: 2.5rem;
+}
+
+/* เมื่อเป็นหน้าสุดท้าย (Step 6) ให้ปิดการสโครลใน Modal */
+.candle-modal.no-scroll {
+  overflow-y: hidden;
+}
+
+.candle-modal.no-scroll .modal-content {
+  max-height: 100vh;
+  overflow-y: hidden;
+}
+
+.modal-step {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.modal-step.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-step h2 {
+  text-align: center;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: #5b2b13;
+  margin-bottom: 2rem;
+}
+
+/* Step 1: เลือกตัวละคร */
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.character-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 206, 163, 0.4);
+  text-align: center;
+}
+
+.character-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(255, 173, 73, 0.3);
+  border-color: rgba(255, 173, 73, 0.7);
+}
+
+.character-card.selected {
+  border-color: #ffb463;
+  background: rgba(255, 199, 143, 0.2);
+  box-shadow: 0 0 0 3px rgba(255, 173, 73, 0.3);
+}
+
+.character-card img {
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.character-name {
+  display: block;
+  font-size: 0.9rem;
+  color: #5b2b13;
+  font-weight: 600;
+}
+
+/* Step 2: กรอกชื่อ */
+.name-input-wrapper {
+  margin-bottom: 2rem;
+}
+
+.name-input {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+  border: 2px solid rgba(255, 206, 163, 0.5);
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.95);
+  color: #5b2b13;
+  transition: all 0.3s ease;
+}
+
+.name-input:focus {
+  outline: none;
+  border-color: #ffb463;
+  box-shadow: 0 0 0 3px rgba(255, 173, 73, 0.2);
+}
+
+/* Step 3: เลือกดอกไม้ + คำอวยพร */
+.flower-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.flower-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 206, 163, 0.4);
+  text-align: center;
+}
+
+.flower-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(255, 173, 73, 0.3);
+  border-color: rgba(255, 173, 73, 0.7);
+}
+
+.flower-card.selected {
+  border-color: #ffb463;
+  background: rgba(255, 199, 143, 0.2);
+  box-shadow: 0 0 0 3px rgba(255, 173, 73, 0.3);
+}
+
+.flower-card img {
+  width: 100%;
+  max-width: 80px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.flower-name {
+  display: block;
+  font-size: 0.85rem;
+  color: #5b2b13;
+  font-weight: 600;
+}
+
+.wish-input-wrapper {
+  margin-bottom: 2rem;
+}
+
+.wish-input-wrapper label {
+  display: block;
+  font-size: 1rem;
+  color: #5b2b13;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.wish-input {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  border: 2px solid rgba(255, 206, 163, 0.5);
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.95);
+  color: #5b2b13;
+  font-family: inherit;
+  resize: vertical;
+  transition: all 0.3s ease;
+}
+
+.wish-input:focus {
+  outline: none;
+  border-color: #ffb463;
+  box-shadow: 0 0 0 3px rgba(255, 173, 73, 0.2);
+}
+
+/* Step 4: เลือกวัด */
+.temple-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.temple-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 247, 232, 0.95));
+  border-radius: 1rem;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 206, 163, 0.4);
+  text-align: center;
+}
+
+.temple-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(255, 173, 73, 0.3);
+  border-color: rgba(255, 173, 73, 0.7);
+}
+
+.temple-card.selected {
+  border-color: #ffb463;
+  background: linear-gradient(135deg, rgba(255, 199, 143, 0.3), rgba(255, 187, 166, 0.3));
+  box-shadow: 0 0 0 3px rgba(255, 173, 73, 0.3);
+}
+
+.temple-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.temple-card h3 {
+  font-size: 1.1rem;
+  color: #5b2b13;
+  margin: 0.5rem 0;
+}
+
+.temple-card p {
+  font-size: 0.9rem;
+  color: #64513b;
+  margin: 0;
+}
+
+/* ปุ่ม Modal */
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.btn-next,
+.btn-back,
+.btn-skip,
+.btn-restart,
+.btn-close {
+  padding: 0.9rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-next {
+  background: linear-gradient(135deg, #ffb26b, #ff7c5c);
+  color: #3b1408;
+  box-shadow: 0 4px 15px rgba(255, 150, 98, 0.4);
+}
+
+.btn-next:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 150, 98, 0.5);
+}
+
+.btn-next:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-back {
+  background: rgba(255, 255, 255, 0.9);
+  color: #5b2b13;
+  border: 2px solid rgba(255, 206, 163, 0.5);
+}
+
+.btn-back:hover {
+  background: rgba(255, 247, 232, 0.9);
+  border-color: rgba(255, 173, 73, 0.7);
+}
+
+.btn-skip {
+  background: rgba(255, 255, 255, 0.9);
+  color: #5b2b13;
+  border: 2px solid rgba(255, 206, 163, 0.5);
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  z-index: 15;
+  pointer-events: auto;
+}
+
+.btn-skip:hover {
+  background: rgba(255, 247, 232, 0.9);
+  border-color: rgba(255, 173, 73, 0.7);
+}
+
+.btn-restart,
+.btn-close {
+  background: linear-gradient(135deg, #ffb26b, #ff7c5c);
+  color: #3b1408;
+}
+
+.btn-restart:hover,
+.btn-close:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 150, 98, 0.5);
+}
+
+/* Step 5: หน้าผลลัพธ์ - เวียนเทียน */
+.result-container {
+  position: relative;
+  min-height: 600px;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+/* บทสวดเลื่อนจากขวา */
+.prayer-ticker-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 52px;
+  overflow: hidden;
+  z-index: 4;
+  background: linear-gradient(90deg, rgba(91,43,19,0.85) 0%, rgba(139,90,43,0.9) 100%);
+  display: flex;
+  align-items: center;
+}
+.prayer-ticker {
+  white-space: nowrap;
+  color: #fff8e7;
+  font-size: 14px;
+  padding: 8px 0;
+  transform: translateX(100%);
+  animation: prayerScroll 45s linear infinite;
+}
+.prayer-ticker.prayer-ticker--active {
+  animation-play-state: running;
+}
+@keyframes prayerScroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* เสียงบทสวด YouTube */
+.prayer-audio-wrap {
+  position: absolute;
+  top: 56px;
+  right: 8px;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.prayer-audio-wrap iframe {
+  width: 0;
+  height: 0;
+  border: 0;
+  overflow: hidden;
+}
+.prayer-audio-toggle {
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.95);
+  color: #5b2b13;
+  border: 1px solid rgba(91,43,19,0.3);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.temple-background {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+/* ===============================
+   Step 5: Character + Prayer
+   =============================== */
+
+.character-result {
+  position: absolute;
+  bottom: 6%;
+  left: -220px;              /* เริ่มนอกจอ */
+  width: auto;               /* ❗ ห้าม 100% */
+  z-index: 5;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  animation: walkAcross 12s linear infinite;
+}
+/* ตัวละคร */
+.character-result img:not(.flower-in-hand) {
+  max-width: 200px;
+  height: auto;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+}
+
+/* กล่อง ชื่อ : คำอธิษฐาน */
+.character-prayer {
+  position: absolute;
+  bottom: 95%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background: white;
+  padding: 6px 12px;
+  border-radius: 14px;
+  font-size: 14px;
+  white-space: nowrap;
+
+  animation: prayerFloat 3s ease-in-out infinite;
+}
+
+@keyframes prayerFloat {
+  0%   { transform: translateX(-50%) translateY(0); }
+  50%  { transform: translateX(-50%) translateY(-8px); }
+  100% { transform: translateX(-50%) translateY(0); }
+}
+
+.character-prayer strong {
+  font-weight: 700;
+  color: #8d4a20;
+}
+
+@keyframes walkAcross {
+  0% {
+    transform: translateX(0) scale(0.7);
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(100vw + 300px)) scale(0.7);
+    opacity: 0;
+  }
+}
+
+
+/* ดอกไม้ในมือ - ติดมือตัวละคร */
+.flower-in-hand {
+  position: absolute;
+  right: 0;
+  bottom: 30%;
+  height: 50px;
+  width: auto;
+  max-width: 56px;
+  object-fit: contain;
+  transform-origin: bottom center;
+  transform: translateX(12%);
+  z-index: 3;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
+}
+
+@keyframes flowerSway {
+  0%   { transform: rotate(-2deg); }
+  50%  { transform: rotate(2deg); }
+  100% { transform: rotate(-2deg); }
+}
+#resultFlower {
+  height: 50px !important;
+  width: auto !important;
+  max-width: 56px !important;
+  object-fit: contain;
+  transform-origin: bottom center;
+}
+
+
+.timer-container {
+  position: absolute;
+  bottom: 2rem;
+  left: 10%;
+  transform: translateX(-50%);
+  z-index: 10;
+  text-align: center;
+}
+
+.round-indicator {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: #5b2b13;
+  font-weight: 600;
+}
+
+.round-number {
+  font-size: 1.5rem;
+  color: #ffb463;
+}
+
+.timer-circle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.timer-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.timer-bg {
+  fill: none;
+  stroke: rgba(255, 206, 163, 0.3);
+  stroke-width: 8;
+}
+
+.timer-progress {
+  fill: none;
+  stroke: #ffb463;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.timer-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.timer-text span:first-child {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #5b2b13;
+}
+
+.timer-unit {
+  font-size: 0.8rem;
+  color: #64513b;
+}
+
+/* Step 6: หน้าสุดท้าย */
+.final-result {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.final-result h2 {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  color: #5b2b13;
+  margin-bottom: 2rem;
+}
+
+.final-character {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+
+.final-character img {
+  max-width: 250px;
+  height: auto;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+}
+
+.final-wish {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 240, 224, 0.95);
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.8rem;
+  font-size: 0.9rem;
+  color: #5b2b13;
+  max-width: 300px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-left: 3px solid rgba(255, 173, 73, 0.6);
+}
+
+.final-name {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #5b2b13;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.final-flower-in-hand {
+  position: absolute;
+  bottom: 30px;
+  right: -40px;
+  max-width: 70px;
+  height: auto;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.final-count {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #5b2b13;
+  margin: 0.5rem 0 1rem;
+}
+.final-count #participantCount {
+  color: #c45c26;
+}
+
+.final-participants-walk {
+  min-height: 140px;
+  position: relative;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  border-radius: 12px;
+  background: rgba(255,247,232,0.5);
+}
+.final-participant-item {
+  position: absolute;
+  bottom: 10%;
+  left: -120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: walkInFromLeft 14s linear forwards;
+  z-index: 2;
+}
+.final-participant-item .final-participant-prayer {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 11px;
+  white-space: nowrap;
+  margin-bottom: 4px;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.final-participant-item img.avatar {
+  width: 56px;
+  height: auto;
+  border-radius: 8px;
+}
+.final-participant-item img.flower-small {
+  width: 24px;
+  height: auto;
+  margin-top: -8px;
+}
+@keyframes walkInFromLeft {
+  0% { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(calc(100vw + 150px)); opacity: 0.8; }
+}
+
+/* .final-temple {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 1rem;
+  font-size: 1.1rem;
+  color: #5b2b13;
+  font-weight: 600;
+} */
+
+.final-message {
+  font-size: 1rem;
+  color: #5b4735;
+  line-height: 1.8;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: rgba(255, 247, 232, 0.6);
+  border-radius: 1rem;
+  border-left: 4px solid rgba(255, 173, 73, 0.6);
+}
+
+/* Responsive: iPad */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .modal-content {
+    max-width: 90vw;
+    padding: 1.5rem;
+  }
+  .result-container {
+    min-height: 520px;
+  }
+  .character-result img:not(.flower-in-hand) {
+    max-width: 180px;
+  }
+  .flower-in-hand, #resultFlower {
+    height: 44px !important;
+    max-width: 50px !important;
+  }
+  .prayer-ticker { font-size: 13px; }
+}
+
+/* Responsive: มือถือ */
+@media (max-width: 768px) {
+  .modal-content {
+    padding: 1.5rem;
+  }
+
+  .character-grid,
+  .flower-grid,
+  .temple-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .result-container {
+    min-height: 500px;
+  }
+
+  .character-result img:not(.flower-in-hand) {
+    max-width: 140px;
+  }
+
+  .flower-in-hand,
+  #resultFlower {
+    height: 38px !important;
+    max-width: 44px !important;
+    right: 0;
+    bottom: 28%;
+    transform: translateX(8%);
+  }
+
+  .timer-circle {
+    width: 100px;
+    height: 100px;
+  }
+}
+.temple-image {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;      /* ครอปให้สวย */
+  border-radius: 12px;
+  margin-bottom: 0.6rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.temple-background {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-size: cover;
+  background-position: center;
+}
+/* พื้นที่เดิน Step 6 */
+.final-walk-area {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+/* ตัวละคร + ดอกไม้ */
+.final-walking-character {
+  position: absolute;
+  bottom: 20px;
+  left: -150px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  animation: finalWalkAcross 10s linear infinite;
+}
+
+.final-walking-character img {
+  height: 110px;
+}
+
+.final-flower-in-hand {
+  height: 60px;
+}
+
+/* Animation เดิน */
+@keyframes finalWalkAcross {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(120vw);
+  }
+}
+
+/* คำอวยพรด้านล่าง */
+.final-wish {
+  margin-top: 12px;
+  padding: 10px 16px;
+  background: #fff;
+  border-radius: 16px;
+  display: inline-block;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  font-size: 15px;
+}
+/* FIX STEP 6: เต็มจอ ไม่มี scroll */
+/* ===============================
+   FIX: Modal Step Control
+   =============================== */
+
+/* ซ่อนทุก step ก่อน */
+.modal-step {
+  display: none;
+}
+
+/* แสดงเฉพาะ step ที่ active */
+.modal-step.active {
+  display: block;
+  animation: fadeIn 0.4s ease;
+}
+
+/* ===============================
+   FIX: Step 6 ต้องแสดงเฉพาะตอน active
+   =============================== */
+
+/* ===============================
+   STEP 6 – FINAL RESULT (CLEAN)
+   =============================== */
+   /* จัดการหัวข้อหน้าสุดท้ายให้เด่นขึ้น */
+.step-6 h2 {
+    color: #5b2b13 !important; /* สีน้ำตาลเข้ม */
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8), 
+                 -1px -1px 0 #fff, 
+                 1px -1px 0 #fff, 
+                 -1px 1px 0 #fff, 
+                 1px 1px 0 #fff !important; /* เพิ่มขอบสีขาวรอบตัวหนังสือ */
+    font-size: clamp(1.8rem, 4vw, 2.8rem) !important;
+    margin-bottom: 0.5rem !important;
+    position: relative;
+    z-index: 25;
+}
+
+.modal-step.step-6 {
+  display: none;
+}
+
+.modal-step.step-6.active {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* Layout */
+.final-result {
+  width: 100%;
+  height: 100%;
+  padding: 1.2rem 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+/* ชื่อ + ตัวละคร */
+.final-character {
+  position: relative;
+  margin-top: 0.5rem;
+}
+
+/* 1. ขยายขนาดตัวละครให้ใหญ่ขึ้น */
+.final-walking-character img.avatar {
+  height: 180px; /* ปรับเพิ่มจากเดิม 110px เป็น 180px หรือตามความเหมาะสม */
+  width: auto;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+}
+
+/* ✅ แก้ไข: ลูกโป่งข้อความบนหัวตัวละคร */
+.final-wish-bubble, 
+.final-participant-prayer {
+  position: relative;
+  background: white;
+  border: 2px solid #ffb463;
+  padding: 8px 12px;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #5b2b13;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  
+  /* แก้ปัญหาข้อความโดนตัด */
+  white-space: normal !important; 
+  max-width: 220px; /* จำกัดความกว้างให้พอดี */
+  text-align: center;
+  line-height: 1.3;
+  
+  /* จัดตำแหน่งให้ชิดหัวตัวละคร */
+  margin-bottom: -15px; 
+  z-index: 110;
+}
+
+/* --- ส่วนควบคุมตัวละครหน้าสุดท้าย (Step 6) --- */
+
+/* พื้นที่เดินของตัวละครหลัก (เดินแถวล่าง) */
+.final-main-walk-area {
+  position: relative;
+  width: 100%;
+  height: 200px; /* ลดความสูงลงเพื่อแบ่งพื้นที่เดิน */
+  margin: 10px 0;
+  overflow: hidden;
+  border-bottom: 2px solid rgba(255, 173, 73, 0.3);
+}
+
+/* ตัวละครหลักและการเคลื่อนที่ */
+.final-main-walking-character {
+  position: absolute;
+  bottom: 20px;
+  left: -200px; /* เริ่มนอกจอ */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: finalMainWalkAcross 12s linear infinite; /* ใช้แอนิเมชันที่ช้าลงเล็กน้อย */
+  z-index: 10; /* ให้อยู่ด้านหน้า */
+}
+
+/* ปรับขนาดตัวละครหลักให้สมดุล */
+.final-main-walking-character img.avatar {
+  height: 120px; /* คุมขนาดตัวละครหลัก */
+  width: auto;
+}
+/* --- ล็อคขนาดและระนาบเดิน Step 6 --- */
+
+.final-walk-area {
+  position: relative;
+  width: 100%;
+  height: 350px; 
+  overflow: visible; /* ให้ข้อความบนหัวไม่ถูกตัด */
+  margin: 20px 0;
+  border-bottom: 2px solid rgba(255, 173, 73, 0.3);
+  pointer-events: none; /* เพื่อให้คลิกปุ่มด้านล่างได้ */
+}
+
+/* ทั้งตัวเราและเพื่อนใช้โครงสร้างเดียวกัน */
+.final-walking-character, 
+.final-participant-item {
+  position: absolute;
+  bottom: 30px;      /* ทุกตัวยึดระนาบเท้าที่ 30px เท่ากัน */
+  left: -250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+/* ล็อคขนาดตัวละครให้เท่ากันทั้งหมด (220px) */
+.final-walking-character img.avatar, 
+.final-participant-item img.avatar,
+#finalCharacter {
+  height: 220px !important; 
+  width: auto !important;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+}
+
+/* ปรับแต่งลูกโป่งข้อความ (ทั้งของเราและของเพื่อน) */
+.final-wish-bubble, 
+.final-participant-prayer {
+  position: relative;
+  background: white;
+  border: 2px solid #ffb463;
+  padding: 8px 15px;
+  border-radius: 15px;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  white-space: nowrap;
+  font-weight: 600;
+  color: #5b2b13;
+}
+
+/* เพิ่มหางลูกโป่ง */
+.final-wish-bubble::after, 
+.final-participant-prayer::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px 10px 0;
+  border-style: solid;
+  border-color: white transparent transparent;
+}
+
+/* แอนิเมชันเดิน (ใช้ชื่อเดียวกันแต่สลับ Delay ใน JS) */
+@keyframes finalWalkAcross {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(100vw + 300px)); }
+}
+/* ปรับขนาดตัวละครให้ใหญ่ขึ้นอย่างชัดเจน */
+.final-walking-character img.avatar, 
+#finalCharacter {
+  height: 220px !important; /* บังคับขนาดให้ใหญ่ (ประมาณ 1.5 - 2 เท่าของเดิม) */
+  width: auto !important;
+  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3));
+}
+/* ปรับกล่องข้อความให้สมดุลกับตัวละครที่ใหญ่ขึ้น */
+.final-wish-bubble {
+  position: relative;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #ffb463;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 1.1rem; /* ขยายขนาดฟอนต์ข้อความบนหัว */
+  margin-bottom: 15px; /* ระยะห่างจากหัวตัวละคร */
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  white-space: nowrap;
+  font-weight: 600;
+  color: #5b2b13;
+}
+/* หางลูกโป่ง */
+.final-wish-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 12px 12px 0;
+  border-style: solid;
+  border-color: #ffb463 transparent transparent;
+}
+
+/* แอนิเมชันเดินข้ามจอ */
+@keyframes finalWalkAcross {
+  from { transform: translateX(0); }
+  to { transform: translateX(130vw); }
+}
+/* ชื่อ */
+.final-name {
+  position: absolute;
+  top: -26px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* คำอธิษฐาน (ลอยบนหัว) */
+.final-walking-character {
+  position: relative;
+}
+
+.final-wish-bubble {
+  position: absolute;
+  top: -80px; /* ⬅️ เดิม -52px → ดันขึ้นอีก */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 240, 224, 0.95);
+  padding: 8px 16px;
+  border-radius: 18px;
+  font-size: 0.9rem;
+  max-width: 280px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 20;
+}
+
+
+
+/* ✅ แก้ไข: พื้นที่เดินเต็มจอ */
+.final-walk-area-wide {
+  position: relative;
+  width: 100vw;
+  height: 480px;
+  margin-top: auto;
+  overflow: visible;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ✅ แก้ไข: เริ่มเดินจากนอกจอซ้ายไกลขึ้น เพื่อไม่ให้เห็นรอยต่อตอนเกิดตัวละคร */
+.final-walking-character, 
+.final-participant-item {
+  position: absolute;
+  bottom: 15px;  /* ลดระดับลงมาชิดพื้นมากขึ้น */
+  left: -500px; /* เริ่มไกลขึ้นเพื่อความสมูท */
+}
+
+/* ตัวละครเดิน */
+/* ค้นหาและแทนที่ส่วนที่เกี่ยวข้องกับข้อความหน้าสุดท้ายใน style.css */
+
+.final-walking-character {
+  position: absolute;
+  bottom: 20px; /* ระนาบการเดิน */
+  left: -200px;
+  display: flex;
+  flex-direction: column; /* ให้ข้อความอยู่บน ตัวละครอยู่ล่าง */
+  align-items: center;    /* จัดให้อยู่กึ่งกลางแนวตั้งเดียวกัน */
+  animation: finalWalkAcross 12s linear infinite;
+  z-index: 100;
+  overflow: visible;      /* สำคัญมาก: เพื่อให้ข้อความที่ลอยพ้นขอบบนแสดงผลได้ */
+}
+
+.final-wish-bubble {
+  position: relative;     /* เปลี่ยนจาก absolute เพื่อให้เรียงต่อจากตัวละคร */
+  background: white;
+  border: 2px solid #ffb463;
+  padding: 8px 15px;
+  border-radius: 15px;
+  font-size: 0.95rem;
+  margin-bottom: 15px;    /* ระยะห่างระหว่างข้อความกับหัวตัวละคร */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  white-space: nowrap;
+  font-weight: 600;
+  color: #5b2b13;
+}
+
+
+.final-walking-character img.avatar {
+  height: 140px;          /* ปรับขนาดตามต้องการ */
+  width: auto;
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+}
+/* เดินข้ามจอ */
+@keyframes finalWalkAcross {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(120vw);
+  }
+}ไฮไลต์โฟลเดอร์
+โครงการนี้คือเว็บไซต์เกี่ยวกับ วันสำคัญทางพระพุทธศาสนา พร้อมกิจกรรม เวียนเทียนออนไลน์ และมีไฟล์ CSS, HTML, และ JS ประกอบการทำงาน
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Prompt", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: radial-gradient(circle at top, #fff9ea 0%, #f9f2ff 40%, #f4f6ff 100%);
+  color: #3b2a1a;
+  line-height: 1.7;
+}
+
+.container {
+  width: min(1120px, 100% - 3rem);
+  margin: 0 auto;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+p {
+  margin: 0 0 0.75rem;
+}
+
+section {
+  padding: 3.5rem 0;
+}
+
+/* Navigation Bar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(255, 206, 163, 0.3);
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.navbar-logo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #5b2b13;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+}
+
+.navbar-logo:hover {
+  color: #8d5a30;
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0.5rem;
+}
+
+.navbar-menu li {
+  margin: 0;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  color: #5b4735;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-radius: 999px;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.nav-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 199, 143, 0.2), rgba(255, 187, 166, 0.2));
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+  opacity: 1;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #5b2b13;
+  transform: translateY(-1px);
+}
+
+.nav-link.active {
+  font-weight: 600;
+  background: linear-gradient(135deg, rgba(255, 199, 143, 0.25), rgba(255, 187, 166, 0.25));
+  box-shadow: 0 2px 8px rgba(255, 173, 73, 0.3);
+}
+
+/* Responsive Navigation */
+@media (max-width: 768px) {
+  .navbar-content {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+  }
+
+  .navbar-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+
+  .nav-link {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-logo {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  .navbar-menu {
+    width: 100%;
+  }
+
+  .nav-link {
+    flex: 1;
+    text-align: center;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  min-height: 75vh;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  color: #fff7ec;
+  text-align: left;
+  /* ใช้สีพื้นหลังอ่อน ๆ เผื่อกรณีที่โหลดรูปไม่สำเร็จ */
+  background-color: #f8e9d8;
+  /* ชี้ไปยังไฟล์ภาพที่ Cursor เก็บไว้ในโปรเจกต์ของคุณ */
+  background-image: url("img/bg.gif");  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ถ้าคุณมีไฟล์ `หน้าปก (2).gif` อยู่ในโฟลเดอร์เดียวกับ index.html
+   สามารถเปลี่ยนบรรทัด background-image ด้านบนเป็น:
+   background-image: url("หน้าปก (2).gif");
+*/
+
+.hero-overlay {
+  flex: 1;
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent 55%),
+    linear-gradient(to bottom right, rgba(77, 37, 15, 0), rgba(134, 64, 38, 0.92));
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  padding: 4.5rem 0 3.5rem;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #ffd27a, #ff9f6a);
+  color: #4b260f;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.hero-tag::before {
+  content: "✶";
+  font-size: 0.9rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  margin-top: 1.4rem;
+  text-shadow: 0 6px 22px rgba(0, 0, 0, 0.55);
+}
+
+.hero-subtitle {
+  max-width: 600px;
+  font-weight: 300;
+  margin-top: 1rem;
+  margin-bottom: 1.8rem;
+  text-shadow: 0 3px 16px rgba(0, 0, 0, 0.7);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  align-items: center;
+}
+
+/* ปุ่มหลักและรอง */
+.btn-primary,
+.btn-secondary {
+  border-radius: 999px;
+  padding: 0.9rem 1.8rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease, color 0.22s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #ffb26b, #ff7c5c);
+  color: #3b1408;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+}
+
+.btn-secondary {
+  background: rgba(255, 244, 231, 0.1);
+  color: #ffe9c9;
+  border: 1px solid rgba(255, 240, 212, 0.7);
+  text-decoration: none;
+  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.35);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.55);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  background: rgba(255, 249, 243, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+}
+
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible {
+  outline: 2px solid #ffe4a1;
+  outline-offset: 3px;
+}
+
+/* Glow effect แบบนุ่มนวลสำหรับปุ่ม "เริ่มเวียนเทียนออนไลน์" */
+.glow-button {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  box-shadow: 0 0 18px rgba(255, 205, 136, 0.0);
+  animation: glowPulse 3.4s ease-in-out infinite;
+}
+
+.glow-button::before {
+  content: "";
+  position: absolute;
+  inset: -75%;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.75), transparent 55%),
+    radial-gradient(circle at 80% 100%, rgba(255, 183, 135, 0.75), transparent 60%);
+  opacity: 0;
+  mix-blend-mode: screen;
+  transform: translate3d(-25%, 10%, 0) rotate(8deg);
+  animation: glowSweep 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.glow-button::after {
+  content: "";
+  position: absolute;
+  inset: -25%;
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.7), transparent 60%);
+  opacity: 0.28;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+.glow-button:hover::before {
+  animation-duration: 3.5s;
+}
+
+.glow-button:hover {
+  animation-play-state: running;
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 rgba(255, 205, 136, 0.0),
+      0 0 0 rgba(255, 166, 123, 0.0);
+  }
+  45% {
+    box-shadow:
+      0 0 18px rgba(255, 221, 166, 0.7),
+      0 0 34px rgba(255, 150, 98, 0.85);
+  }
+  70% {
+    box-shadow:
+      0 0 12px rgba(255, 221, 166, 0.5),
+      0 0 26px rgba(255, 150, 98, 0.65);
+  }
+}
+
+@keyframes glowSweep {
+  0% {
+    opacity: 0;
+    transform: translate3d(-45%, 20%, 0) rotate(8deg);
+  }
+  20% {
+    opacity: 0.75;
+  }
+  55% {
+    opacity: 0.6;
+    transform: translate3d(10%, -10%, 0) rotate(4deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(40%, -40%, 0) rotate(0deg);
+  }
+}
+
+/* ส่วนเนื้อหา */
+.section-days {
+  background: linear-gradient(180deg, rgba(255, 247, 232, 0.9), #fffdf7);
+}
+
+.section-candle {
+  background: radial-gradient(circle at top, #fff4d7 0%, #f9f6ff 35%, #f2f4ff 100%);
+  border-top: 1px solid rgba(255, 211, 151, 0.35);
+}
+
+.section h2 {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  text-align: center;
+  color: #4b2a10;
+}
+
+.section-intro {
+  max-width: 720px;
+  margin: 0.75rem auto 2.1rem;
+  text-align: center;
+  color: #5a4631;
+}
+
+/* การ์ดแต่ละวัน */
+.day-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.8rem;
+}
+
+@media (max-width: 768px) {
+  .day-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.day-card {
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.96), rgba(255, 240, 224, 0.96));
+  border-radius: 1.4rem;
+  padding: 1.5rem 1.6rem 1.4rem;
+  box-shadow:
+    0 18px 40px rgba(176, 121, 72, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 206, 163, 0.6);
+  position: relative;
+  overflow: hidden;
+  scroll-margin-top: 5rem;
+}
+
+.day-card::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle at top right, rgba(255, 209, 163, 0.32), transparent 60%);
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+/* Card Header */
+.day-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.day-card h3 {
+  font-size: 1.25rem;
+  color: #5b2b13;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.day-badge {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, rgba(255, 199, 143, 0.3), rgba(255, 187, 166, 0.3));
+  color: #5b2b13;
+  border: 1px solid rgba(255, 199, 143, 0.5);
+}
+
+/* Day Feature */
+.day-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.day-feature-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.day-tagline {
+  font-size: 0.95rem;
+  color: #8d5a30;
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Day Content */
+.day-content {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 1.2rem;
+}
+
+.day-description {
+  font-size: 0.95rem;
+  color: #5b4735;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.day-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.day-detail-item {
+  font-size: 0.9rem;
+  color: #64513b;
+  line-height: 1.6;
+}
+
+.day-detail-item strong {
+  color: #5b2b13;
+  font-weight: 600;
+}
+
+/* Read More Button */
+.btn-read-more {
+  width: 100%;
+  padding: 0.75rem 1.2rem;
+  background: linear-gradient(135deg, rgba(255, 199, 143, 0.2), rgba(255, 187, 166, 0.2));
+  border: 1px solid rgba(255, 199, 143, 0.5);
+  border-radius: 0.8rem;
+  color: #5b2b13;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.25s ease;
+  position: relative;
+  z-index: 1;
+  margin-top: 0.5rem;
+}
+
+.btn-read-more:hover {
+  background: linear-gradient(135deg, rgba(255, 199, 143, 0.35), rgba(255, 187, 166, 0.35));
+  border-color: rgba(255, 199, 143, 0.7);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 173, 73, 0.25);
+}
+
+.btn-read-more.active {
+  background: linear-gradient(135deg, rgba(255, 199, 143, 0.4), rgba(255, 187, 166, 0.4));
+}
+
+.btn-arrow {
+  transition: transform 0.25s ease;
+  font-size: 1.1rem;
+}
+
+.btn-read-more.active .btn-arrow {
+  transform: rotate(90deg);
+}
+
+/* Expanded Content */
+.day-expanded-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+  padding: 0 0;
+  margin-top: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.day-expanded-content.active {
+  max-height: 2000px;
+  opacity: 1;
+  padding: 1.2rem 0 0.5rem;
+  border-top: 1px solid rgba(255, 206, 163, 0.4);
+  margin-top: 1rem;
+}
+
+.day-expanded-content h4 {
+  font-size: 1.1rem;
+  color: #5b2b13;
+  margin: 0 0 0.75rem;
+  font-weight: 700;
+}
+
+.day-expanded-content p {
+  font-size: 0.95rem;
+  color: #5b4735;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+.day-expanded-content ul,
+.day-expanded-content ol {
+  margin: 0.75rem 0;
+  padding-left: 1.5rem;
+  color: #5b4735;
+}
+
+.day-expanded-content li {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+}
+
+.day-expanded-content li strong {
+  color: #5b2b13;
+  font-weight: 600;
+}
+
+.day-card ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  list-style: "✦ ";
+  position: relative;
+  z-index: 1;
+  color: #5b4735;
+}
+
+.day-card li + li {
+  margin-top: 0.35rem;
+}
+
+/* แต่งสีโทนต่าง ๆ ให้แต่ละการ์ด */
+.day-makha {
+  border-color: rgba(255, 199, 143, 0.9);
+}
+
+.day-visakha {
+  border-color: rgba(255, 187, 166, 0.9);
+}
+
+.day-asalha {
+  border-color: rgba(215, 190, 255, 0.9);
+}
+
+.day-khaopansa {
+  border-color: rgba(190, 223, 255, 0.9);
+}
+
+/* Activity Section - เวียนเทียน */
+.activity-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.activity-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+  animation: candleFlicker 3s ease-in-out infinite;
+}
+
+@keyframes candleFlicker {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: brightness(1);
+  }
+  25% {
+    transform: scale(1.05) rotate(-2deg);
+    filter: brightness(1.1);
+  }
+  50% {
+    transform: scale(1) rotate(0deg);
+    filter: brightness(1);
+  }
+  75% {
+    transform: scale(1.05) rotate(2deg);
+    filter: brightness(1.1);
+  }
+}
+
+.activity-header h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  color: #5b2b13;
+  margin-bottom: 0.75rem;
+}
+
+/* คำอธิบายความหมายของการเวียนเทียน */
+.candle-meaning {
+  margin-bottom: 3rem;
+}
+
+.meaning-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 247, 232, 0.98));
+  border-radius: 1.5rem;
+  padding: 2rem 2.2rem;
+  box-shadow:
+    0 20px 50px rgba(176, 121, 72, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 206, 163, 0.6);
+}
+
+.meaning-card h3 {
+  font-size: 1.4rem;
+  color: #5b2b13;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.meaning-card > p {
+  font-size: 1rem;
+  color: #5b4735;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.meaning-card > p strong {
+  color: #5b2b13;
+  font-weight: 700;
+}
+
+.meaning-details {
+  display: grid;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.meaning-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 206, 163, 0.4);
+}
+
+.meaning-number {
+  flex-shrink: 0;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffb463, #ff9f6a);
+  color: #3b1408;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(255, 173, 73, 0.4);
+}
+
+.meaning-item div {
+  flex: 1;
+  font-size: 0.95rem;
+  color: #5b4735;
+  line-height: 1.7;
+}
+
+.meaning-item strong {
+  color: #5b2b13;
+  font-weight: 600;
+}
+
+.meaning-note {
+  font-size: 0.95rem;
+  color: #64513b;
+  line-height: 1.8;
+  font-style: italic;
+  text-align: center;
+  padding: 1rem;
+  background: rgba(255, 240, 224, 0.5);
+  border-radius: 0.8rem;
+  border-left: 3px solid rgba(255, 173, 73, 0.6);
+}
+
+/* Online Activity Section */
+.online-activity {
+  margin-top: 3rem;
+}
+
+.online-activity h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: #5b2b13;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.online-intro {
+  text-align: center;
+  font-size: 1rem;
+  color: #5a4631;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  line-height: 1.7;
+}
+
+/* ขั้นตอนเวียนเทียนออนไลน์ */
+.candle-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem;
+  counter-reset: candle-step;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.candle-steps li {
+  position: relative;
+  padding: 1rem 1.2rem 1rem 3.4rem;
+  border-radius: 1.2rem;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 14px 32px rgba(164, 132, 91, 0.16);
+  border: 1px solid rgba(255, 210, 167, 0.75);
+}
+
+.candle-steps li::before {
+  counter-increment: candle-step;
+  content: counter(candle-step);
+  position: absolute;
+  left: 1.1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 0%, #fffdf4, #ffb463);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #4b2209;
+  box-shadow:
+    0 0 14px rgba(255, 173, 73, 0.9),
+    0 4px 10px rgba(170, 109, 52, 0.6);
+}
+
+.step-title {
+  display: block;
+  font-weight: 600;
+  color: #62351c;
+  margin-bottom: 0.15rem;
+}
+
+.step-detail {
+  font-size: 0.95rem;
+  color: #64513b;
+}
+
+/* ปุ่มเวียนเทียนออนไลน์ */
+.candle-action {
+  text-align: center;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 2px solid rgba(255, 206, 163, 0.4);
+}
+
+.btn-candle-online {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #3b1408;
+  background: linear-gradient(135deg, #ffb26b, #ff7c5c);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow:
+    0 12px 30px rgba(255, 150, 98, 0.5),
+    0 0 0 0 rgba(255, 205, 136, 0);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-candle-online::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-candle-online:hover::before {
+  opacity: 1;
+}
+
+.btn-candle-online:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 16px 40px rgba(255, 150, 98, 0.6),
+    0 0 0 4px rgba(255, 205, 136, 0.3);
+}
+
+.btn-candle-online:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-candle-icon {
+  font-size: 1.4rem;
+  animation: candleIconFlicker 2s ease-in-out infinite;
+}
+
+@keyframes candleIconFlicker {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+  }
+}
+
+.btn-candle-arrow {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.btn-candle-online:hover .btn-candle-arrow {
+  transform: translateX(4px);
+}
+
+.candle-action-note {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #64513b;
+  font-style: italic;
+}
+
+/* ไฮไลต์ตอนเลื่อนมาที่ส่วนเวียนเทียน */
+.section-candle.highlight {
+  animation: sectionGlow 2.6s ease-out 1;
+}
+
+@keyframes sectionGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(255, 191, 112, 0);
+  }
+  30% {
+    box-shadow: 0 0 30px rgba(255, 191, 112, 0.75);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(255, 191, 112, 0);
+  }
+}
+
+/* เอฟเฟกต์ไฮไลต์การ์ดเมื่อคลิกจากเมนู */
+@keyframes cardHighlight {
+  0% {
+    transform: scale(1);
+    box-shadow:
+      0 18px 40px rgba(176, 121, 72, 0.18),
+      0 0 0 1px rgba(255, 255, 255, 0.7);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow:
+      0 24px 50px rgba(255, 173, 73, 0.4),
+      0 0 0 2px rgba(255, 206, 163, 0.8);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 18px 40px rgba(176, 121, 72, 0.18),
+      0 0 0 1px rgba(255, 255, 255, 0.7);
+  }
+}
+
+@keyframes stepHighlight {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 14px 32px rgba(164, 132, 91, 0.16);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow:
+      0 18px 40px rgba(255, 173, 73, 0.4),
+      0 0 0 2px rgba(255, 206, 163, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 14px 32px rgba(164, 132, 91, 0.16);
+  }
+}
+
+/* Footer */
+.footer {
+  padding: 1.5rem 0 2rem;
+  background: #3b2617;
+  color: #f7e6d2;
+  font-size: 0.9rem;
+}
+
+.footer-content {
+  text-align: center;
+}
+
+/* การตอบสนองบนจอเล็ก */
+@media (max-width: 640px) {
+  .hero {
+    text-align: center;
+  }
+
+  .hero-content {
+    padding-top: 3.5rem;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .candle-steps li {
+    padding-left: 3rem;
+  }
+
+  .meaning-card {
+    padding: 1.5rem 1.2rem;
+  }
+
+  .meaning-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .btn-candle-online {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+/* ============================================
+   Modal เวียนเทียนออนไลน์
+   ============================================ */
+.candle-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.candle-modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, #fffdf7, #fff4d7);
+  border-radius: 1.5rem;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  position: relative;
+  padding: 2.5rem;
+}
+
+.modal-step {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.modal-step.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-step h2 {
+  text-align: center;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: #5b2b13;
+  margin-bottom: 2rem;
+}
+
+/* Step 1: เลือกตัวละคร */
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.character-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 206, 163, 0.4);
+  text-align: center;
+}
+
+.character-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(255, 173, 73, 0.3);
+  border-color: rgba(255, 173, 73, 0.7);
+}
+
+.character-card.selected {
+  border-color: #ffb463;
+  background: rgba(255, 199, 143, 0.2);
+  box-shadow: 0 0 0 3px rgba(255, 173, 73, 0.3);
+}
+
+.character-card img {
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.character-name {
+  display: block;
+  font-size: 0.9rem;
+  color: #5b2b13;
+  font-weight: 600;
+}
+
+/* Step 2: กรอกชื่อ */
+.name-input-wrapper {
+  margin-bottom: 2rem;
+}
+
+.name-input {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+  border: 2px solid rgba(255, 206, 163, 0.5);
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.95);
+  color: #5b2b13;
+  transition: all 0.3s ease;
+}
+
+.name-input:focus {
+  outline: none;
+  border-color: #ffb463;
+  box-shadow: 0 0 0 3px rgba(255, 173, 73, 0.2);
+}
+
+/* Step 3: เลือกดอกไม้ + คำอวยพร */
+.flower-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.flower-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 206, 163, 0.4);
+  text-align: center;
+}
+
+.flower-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(255, 173, 73, 0.3);
+  border-color: rgba(255, 173, 73, 0.7);
+}
+
+.flower-card.selected {
+  border-color: #ffb463;
+  background: rgba(255, 199, 143, 0.2);
+  box-shadow: 0 0 0 3px rgba(255, 173, 73, 0.3);
+}
+
+.flower-card img {
+  width: 100%;
+  max-width: 80px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.flower-name {
+  display: block;
+  font-size: 0.85rem;
+  color: #5b2b13;
+  font-weight: 600;
+}
+
+.wish-input-wrapper {
+  margin-bottom: 2rem;
+}
+
+.wish-input-wrapper label {
+  display: block;
+  font-size: 1rem;
+  color: #5b2b13;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.wish-input {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  border: 2px solid rgba(255, 206, 163, 0.5);
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.95);
+  color: #5b2b13;
+  font-family: inherit;
+  resize: vertical;
+  transition: all 0.3s ease;
+}
+
+.wish-input:focus {
+  outline: none;
+  border-color: #ffb463;
+  box-shadow: 0 0 0 3px rgba(255, 173, 73, 0.2);
+}
+
+/* Step 4: เลือกวัด */
+.temple-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.temple-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 247, 232, 0.95));
+  border-radius: 1rem;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 206, 163, 0.4);
+  text-align: center;
+}
+
+.temple-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(255, 173, 73, 0.3);
+  border-color: rgba(255, 173, 73, 0.7);
+}
+
+.temple-card.selected {
+  border-color: #ffb463;
+  background: linear-gradient(135deg, rgba(255, 199, 143, 0.3), rgba(255, 187, 166, 0.3));
+  box-shadow: 0 0 0 3px rgba(255, 173, 73, 0.3);
+}
+
+.temple-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.temple-card h3 {
+  font-size: 1.1rem;
+  color: #5b2b13;
+  margin: 0.5rem 0;
+}
+
+.temple-card p {
+  font-size: 0.9rem;
+  color: #64513b;
+  margin: 0;
+}
+
+/* ปุ่ม Modal */
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.btn-next,
+.btn-back,
+.btn-skip,
+.btn-restart,
+.btn-close {
+  padding: 0.9rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-next {
+  background: linear-gradient(135deg, #ffb26b, #ff7c5c);
+  color: #3b1408;
+  box-shadow: 0 4px 15px rgba(255, 150, 98, 0.4);
+}
+
+.btn-next:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 150, 98, 0.5);
+}
+
+.btn-next:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-back {
+  background: rgba(255, 255, 255, 0.9);
+  color: #5b2b13;
+  border: 2px solid rgba(255, 206, 163, 0.5);
+}
+
+.btn-back:hover {
+  background: rgba(255, 247, 232, 0.9);
+  border-color: rgba(255, 173, 73, 0.7);
+}
+
+.btn-skip {
+  background: rgba(255, 255, 255, 0.9);
+  color: #5b2b13;
+  border: 2px solid rgba(255, 206, 163, 0.5);
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  z-index: 15;
+  pointer-events: auto;
+}
+
+.btn-skip:hover {
+  background: rgba(255, 247, 232, 0.9);
+  border-color: rgba(255, 173, 73, 0.7);
+}
+
+.btn-restart,
+.btn-close {
+  background: linear-gradient(135deg, #ffb26b, #ff7c5c);
+  color: #3b1408;
+}
+
+.btn-restart:hover,
+.btn-close:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 150, 98, 0.5);
+}
+
+/* Step 5: หน้าผลลัพธ์ - เวียนเทียน */
+.result-container {
+  position: relative;
+  min-height: 600px;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+/* บทสวดเลื่อนจากขวา */
+.prayer-ticker-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 52px;
+  overflow: hidden;
+  z-index: 4;
+  background: linear-gradient(90deg, rgba(91,43,19,0.85) 0%, rgba(139,90,43,0.9) 100%);
+  display: flex;
+  align-items: center;
+}
+.prayer-ticker {
+  white-space: nowrap;
+  color: #fff8e7;
+  font-size: 14px;
+  padding: 8px 0;
+  transform: translateX(100%);
+  animation: prayerScroll 45s linear infinite;
+}
+.prayer-ticker.prayer-ticker--active {
+  animation-play-state: running;
+}
+@keyframes prayerScroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* เสียงบทสวด YouTube */
+.prayer-audio-wrap {
+  position: absolute;
+  top: 56px;
+  right: 8px;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.prayer-audio-wrap iframe {
+  width: 0;
+  height: 0;
+  border: 0;
+  overflow: hidden;
+}
+.prayer-audio-toggle {
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.95);
+  color: #5b2b13;
+  border: 1px solid rgba(91,43,19,0.3);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.temple-background {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+/* ===============================
+   Step 5: Character + Prayer
+   =============================== */
+
+.character-result {
+  position: absolute;
+  bottom: 6%;
+  left: -220px;              /* เริ่มนอกจอ */
+  width: auto;               /* ❗ ห้าม 100% */
+  z-index: 5;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  animation: walkAcross 12s linear infinite;
+}
+/* ตัวละคร */
+.character-result img:not(.flower-in-hand) {
+  max-width: 200px;
+  height: auto;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+}
+
+/* กล่อง ชื่อ : คำอธิษฐาน */
+.character-prayer {
+  position: absolute;
+  bottom: 95%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background: white;
+  padding: 6px 12px;
+  border-radius: 14px;
+  font-size: 24px;
+  white-space: nowrap;
+
+  animation: prayerFloat 3s ease-in-out infinite;
+}
+
+@keyframes prayerFloat {
+  0%   { transform: translateX(-50%) translateY(0); }
+  50%  { transform: translateX(-50%) translateY(-8px); }
+  100% { transform: translateX(-50%) translateY(0); }
+}
+
+.character-prayer strong {
+  font-weight: 700;
+  color: #8d4a20;
+}
+
+@keyframes walkAcross {
+  0% {
+    transform: translateX(0) scale(0.7);
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(100vw + 300px)) scale(0.7);
+    opacity: 0;
+  }
+}
+
+
+/* ดอกไม้ในมือ - ติดมือตัวละคร */
+.flower-in-hand {
+  position: absolute;
+  right: 0;
+  bottom: 30%;
+  height: 50px;
+  width: auto;
+  max-width: 56px;
+  object-fit: contain;
+  transform-origin: bottom center;
+  transform: translateX(12%);
+  z-index: 3;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
+}
+
+@keyframes flowerSway {
+  0%   { transform: rotate(-2deg); }
+  50%  { transform: rotate(2deg); }
+  100% { transform: rotate(-2deg); }
+}
+#resultFlower {
+  height: 50px !important;
+  width: auto !important;
+  max-width: 56px !important;
+  object-fit: contain;
+  transform-origin: bottom center;
+}
+
+
+.timer-container {
+  position: absolute;
+  bottom: 2rem;
+  left: 10%;
+  transform: translateX(-50%);
+  z-index: 10;
+  text-align: center;
+}
+
+.round-indicator {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: #5b2b13;
+  font-weight: 600;
+}
+
+.round-number {
+  font-size: 1.5rem;
+  color: #ffb463;
+}
+
+.timer-circle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.timer-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.timer-bg {
+  fill: none;
+  stroke: rgba(255, 206, 163, 0.3);
+  stroke-width: 8;
+}
+
+.timer-progress {
+  fill: none;
+  stroke: #ffb463;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.timer-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.timer-text span:first-child {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #5b2b13;
+}
+
+.timer-unit {
+  font-size: 0.8rem;
+  color: #64513b;
+}
+
+/* ============================================================
+   STEP 6 FINAL RESULT - ฉบับแก้ไขสมบูรณ์ (ขนาดเท่ากัน/ไม่หาย)
+   ============================================================ */
+
+/* 1. จัดการหน้าจอ Step 6 ให้เต็มจอและเลื่อนอ่านได้ */
+.modal-step.step-6.active {
+    display: block !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+    position: relative !important;
+    overflow-x: hidden !important; 
+    overflow-y: auto !important;   
+    padding: 0 !important;
+}
+
+/* 2. จัดระเบียบเนื้อหาด้านบน (ข้อความอวยพร) */
+.final-overlay-content {
+    position: relative !important;
+    z-index: 20 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 2.5rem 1rem !important;
+    width: 100% !important;
+}
+
+.final-wish-text {
+    background: rgba(255, 255, 255, 0.95) !important;
+    padding: 1.2rem 2rem !important;
+    border-radius: 1rem !important;
+    margin: 1rem auto !important;
+    max-width: 800px !important;
+    text-align: center !important;
+    border-left: 5px solid #ffb463 !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    font-size: 1.1rem !important;
+    line-height: 1.6 !important;
+}
+
+/* 3. พื้นที่เดินขยายเต็มจอ (Visible เพื่อไม่ให้คนหาย) */
+.final-walk-area-wide {
+    position: relative !important;
+    width: 100vw !important;
+    height: 500px !important;    
+    margin: 20px 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+
+    /* ตัดขอบที่ล้นออกมา */
+    overflow: hidden !important;
+
+    /* เอาเส้นสีส้มออก */
+    border-bottom: none !important;
+}
+
+/* 4. ล็อคขนาดตัวละครให้เท่ากันเป๊ะ (บังคับ 300px ทั้งเราและเพื่อน) */
+.final-walking-character img.avatar, 
+.final-participant-item img.avatar,
+#finalCharacter {
+    height: 300px !important; 
+    width: auto !important;
+    opacity: 1 !important;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2)) !important;
+}
+
+/* 5. ตั้งค่าตำแหน่งและการเดิน (เริ่มนอกจอซ้าย -500px) */
+.final-walking-character, 
+.final-participant-item {
+    position: absolute !important;
+    bottom: 5px !important;      
+    left: -500px !important;      
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    z-index: 100 !important;
+    opacity: 1 !important;
+}
+
+/* 6. ลูกโป่งข้อความ (ไม่โดนตัดคำและขึ้นบรรทัดใหม่ได้) */
+.final-wish-bubble, 
+.final-participant-prayer {
+    position: relative !important;
+    background: white !important;
+    border: 2px solid #ffb463 !important;
+    padding: 10px 15px !important;
+    border-radius: 18px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: #5b2b13 !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    white-space: normal !important; 
+    max-width: 250px !important; 
+    text-align: center !important;
+    line-height: 1.4 !important;
+    word-break: break-word !important;
+    margin-bottom: -20px !important; 
+}
+
+/* 1. บังคับให้ลูกโป่งของ "ทุกคน" (รวมถึงเพื่อน) ไม่มีหางไว้ก่อน */
+.final-wish-bubble::after, 
+.final-participant-prayer::after {
+    display: none !important; /* ปิดหางลูกโป่งของทุกคน */
+}
+
+/* 2. ✅ เปิดหางลูกโป่ง "เฉพาะ" ตัวละครของเรา (ที่มี class is-me) เท่านั้น */
+.is-me .final-wish-bubble::after {
+    display: block !important; /* เปิดหางเฉพาะของเรา */
+    content: '' !important;
+    position: absolute !important;
+    bottom: -8px !important;  /* ตำแหน่งหางชิดขอบล่างกล่อง */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    border-width: 8px 8px 0 !important; 
+    border-style: solid !important;
+    border-color: white transparent transparent !important; /* หางสีขาวเหมือนกล่อง */
+    z-index: 210 !important;
+}
+
+/* 7. แอนิเมชันเดินข้ามจอระยะไกล (ป้องกันคนวับหาย) */
+@keyframes finalWalkAcross {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(100vw + 1000px)); }
+}
+
+/* 8. พื้นหลังวัดเต็มจอ */
+#finalTempleBg.temple-background {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-size: cover !important;
+    background-position: center !important;
+    opacity: 0.7 !important;
+    z-index: 1 !important;
+}
+
+/* ปุ่มจัดการหน้า */
+.modal-actions {
+    position: relative !important;
+    z-index: 30 !important;
+    margin-top: 2rem !important;
+    padding-bottom: 2rem !important;
+}
+/* ย่อขนาดตัวละครที่เดินให้เล็กลง */
+.final-walking-character img.avatar,
+.final-participant-item img.avatar,
+#finalCharacter {
+  height: 200px !important;   /* จาก 300px ลดลงเหลือ 200px */
+  width: auto !important;
+}
+
+/* ขยับปุ่มให้ชิดพื้นที่เดินของตัวละครมากขึ้น */
+.modal-step.step-6 .modal-actions {
+  margin-top: 0.5rem !important;   /* ลดระยะห่างด้านบน */
+  padding-bottom: 0.8rem !important; /* ลดช่องว่างด้านล่าง ให้ปุ่มลอยขึ้นมาใกล้ตัวละคร */
+}
+/* ขยับตัวละคร (แถวเดิน) ขึ้นมาใกล้กลางจอมากขึ้น */
+.final-walk-area-wide {
+  height: 320px !important;        /* เตี้ยลง ตัวละครเลยขึ้นมา */
+  margin: 0 0 8px !important;      /* ติดด้านบนมากขึ้น */
+}
+
+/* ยกตำแหน่งตัวละครให้ลอยขึ้นจากพื้นนิดหน่อย */
+.final-walking-character,
+.final-participant-item {
+  bottom: 40px !important;         /* เดิม ~15–20px → ขยับขึ้น */
+}
+
+/* ขยับปุ่ม "เริ่มใหม่ / ปิด" ให้ขึ้นมาติดตัวละคร */
+.modal-step.step-6 .modal-actions {
+  margin-top: 0.2rem !important;   /* ลดช่องว่างด้านบน */
+  padding-bottom: 0.5rem !important;
+}
+/* จัดข้อความจำนวนคนให้อยู่บรรทัดเดียวกัน */
+.final-count {
+  text-align: center;        /* จัดกลาง */
+  white-space: nowrap;       /* ไม่ตัดขึ้นบรรทัดใหม่ */
+}
+
+/* กันไม่ให้ span ด้านในกลายเป็นบล็อก */
+.final-count span {
+  display: inline;
+}
+
+
+/* ข้อความอวยพรของเรา */
+/* รีเซ็ตตัวละครให้เหยียบพื้นเหมือนเดิม */
+.final-walking-character {
+  position: absolute !important;
+  bottom: 20px !important;   /* ระยะจากพื้น */
+  left: -150px !important;
+}
+
+/* กล่องคำอวยพรของเรา – ลอยชิดหัว */
+.final-walking-character .final-wish-bubble {
+  position: absolute !important;
+  bottom: auto !important;   /* ไม่ใช้ bottom แล้ว */
+  top: -60px !important;     /* ระยะจากหัวขึ้นไป 60px (ปรับได้) */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+
+  background: white !important;
+  padding: 6px 12px !important;
+  border-radius: 14px !important;
+  font-size: 18px !important;
+  white-space: nowrap !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15) !important;
+}
